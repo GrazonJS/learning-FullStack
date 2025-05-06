@@ -54,15 +54,6 @@ app.post("/", (req, res) => {
   });
 });
 
-app.put("/", (req, res) => {
-  users[0].kidneys.map((kidney) => {
-    kidney.healthy = "true";
-  });
-  res.json({
-    msg: "updated",
-  });
-});
-
 const isAtleastOneBadKidney = () => {
   let atleastOneBadKidney = false;
   users[0].kidneys.map((kidney) => {
@@ -72,6 +63,21 @@ const isAtleastOneBadKidney = () => {
   });
   return atleastOneBadKidney;
 };
+
+app.put("/", (req, res) => {
+  if (isAtleastOneBadKidney()) {
+    users[0].kidneys.map((kidney) => {
+      kidney.healthy = "true";
+    });
+    res.json({
+      msg: "updated",
+    });
+  } else {
+    res.status.json({
+      msg: "all kidneys are already good kidneys",
+    });
+  }
+});
 
 app.delete("/", (req, res) => {
   if (isAtleastOneBadKidney()) {
