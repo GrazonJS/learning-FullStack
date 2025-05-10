@@ -1,6 +1,8 @@
-const { log } = require("console");
 const express = require("express");
+const zod = require("zod");
 const app = express();
+
+const schema = zod.array(zod.number());
 
 app.get("/ugly-health-checkup", (req, res) => {
   const username = req.headers.username;
