@@ -5,13 +5,12 @@ const app = express();
 const schema = zod.array(zod.number());
 
 //validating a login form
-
 const loginSchema = zod.object({
   email: zod.string().email(),
   password: zod.string().min(8),
   country: zod.literal("IN").or(zod.literal("US")),
 });
-
+// --- -
 app.use(express.json());
 
 app.post("/", (req, res) => {
