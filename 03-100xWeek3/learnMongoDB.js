@@ -5,9 +5,7 @@ const jwt = require("jsonwebtoken");
 const app = express();
 app.use(express.json());
 
-mongoose.connect(
-  "mongodb+srv://Graceshon:I9Mv6Pga9604lHaE@cluster0.sxag7i8.mongodb.net/learnMongo-DB"
-);
+mongoose.connect("-");
 
 const User = mongoose.model("Users", {
   name: String,
