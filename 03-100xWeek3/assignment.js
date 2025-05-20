@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
   password: String,
   name: String,
 });
-const User = mongoose.model("Users", userSchema);
+const User = mongoose.model("users", userSchema);
 
 const loginSchema = zod.object({
   username: zod.string().email({ message: "Invaild username" }),

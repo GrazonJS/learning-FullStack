@@ -1,0 +1,33 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple interest calculator</title>
+  </head>
+  <body>
+    <input type="text" id="input1" placeholder="enter the principle amount" />
+    <input type="text" id="input2" placeholder="enter the time taken" />
+    <input type="text" id="input3" placeholder="enter the rate of interest" />
+    <button onclick="simpleInterest()">Submit</button>
+    <p id="output"></p>
+
+    <script>
+      const simpleInterest = async () => {
+        const principle = document.getElementById("input1").value;
+        const time = document.getElementById("input2").value;
+        const rate = document.getElementById("input3").value;
+        const interest = document.getElementById("output");
+        interest.innerText = await fetchData(principle, time, rate);
+      };
+
+      const fetchData = async (principle, time, rate) => {
+        const response = await fetch(
+          `http://localhost:3000/?principle=${principle}&time=${time}&rate=${rate}`
+        );
+        const data = await response.json();
+        console.log(data.simpleInterest);
+        return data.simpleInterest;
+      };
+    </script>
+  </body>
+</html>
