@@ -1,6 +1,9 @@
 const { Router } = require("express");
 const adminMiddleware = require("../middleware/admin");
 const { Admin, Course } = require("../database/database");
+const jwt = require("jsonwebtoken");
+const { JWT_SECRET_KEY } = require("../config");
+
 const router = Router();
 
 //admin routes
@@ -21,6 +24,23 @@ router.post("/signup", async (req, res) => {
   } else {
     res.status(400).json({
       msg: "already have an account?",
+    });
+  }
+});
+
+router.post("/signin", async (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  const isAdmin = await Admin.findOne({ username, password });
+  console.log("-----------");
+  console.log(JWT_SECRET_KEY);
+
+  if (isAdmin) {
+    const newToken = jwt.sign({ username, role: "admin" }, JWT_SECRET_KEY);
+    res.json({ token: newToken });
+  } else {
+    res.status(403).json({
+      msg: "invalid inputs |  not a user? create an accout",
     });
   }
 });

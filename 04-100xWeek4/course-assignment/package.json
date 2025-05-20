@@ -9,7 +9,7 @@
   },
   "name": "04-100xweek4",
   "version": "1.0.0",
-  "main": "SI-assignment.js",
+  "main": "newIndex.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -2,6 +2,8 @@ const { Router } = require("express");
 const router = Router();
 const userMiddleware = require("../middleware/user");
 const { User, Course } = require("../database/database");
+const jwt = require("jsonwebtoken");
+const { JWT_SECRET_KEY } = require("../config");
 
 router.post("/signup", async (req, res) => {
   const username = req.body.username;
@@ -29,8 +31,7 @@ router.get("/courses", async (req, res) => {
 
 router.post("/courses/:courseId", userMiddleware, async (req, res) => {
   const courseId = req.params.courseId;
-  const username = req.headers.username;
-
+  const username = req.username;
   await User.updateOne(
     {
       username,
