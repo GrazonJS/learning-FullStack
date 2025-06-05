@@ -24,6 +24,21 @@ router.post("/signup", async (req, res) => {
   }
 });
 
+router.post("/signin", async (req, res) => {
+  const username = req.headers.username;
+  const password = req.headers.password;
+
+  const isUser = await User.findOne({ username, password });
+
+  if (isUser) {
+    const token = jwt.sign({ username, role: "user" }, JWT_SECRET_KEY);
+    res.json({ token });
+  } else {
+    res.status(403).json({
+      msg: "incorrect inputs | first time ? create an account",
+    });
+  }
+});
 router.get("/courses", async (req, res) => {
   const course = await Course.find({});
   res.json({ course });
@@ -48,10 +63,9 @@ router.post("/courses/:courseId", userMiddleware, async (req, res) => {
 });
 
 router.get("/purchasedCourse", userMiddleware, async (req, res) => {
-  const username = req.headers.username;
-  const password = req.headers.password;
+  const username = req.username;
 
-  const userData = await User.findOne({ username, password });
+  const userData = await User.findOne({ username });
   console.log(userData);
   const courseData = await Course.find({
     _id: {
