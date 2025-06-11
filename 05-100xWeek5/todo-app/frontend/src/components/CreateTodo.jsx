@@ -18,7 +18,7 @@ const CreateTodo = ({ setTodos }) => {
         },
         {
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "applica tion/json",
           },
         }
       );
