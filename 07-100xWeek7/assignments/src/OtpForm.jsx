@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const OtpForm = ({ length = 4, number }) => {
   const [otp, setOtp] = useState(Array(length).fill(""));
@@ -28,7 +28,8 @@ const OtpForm = ({ length = 4, number }) => {
           return (
             <div key={index}>
               <input
-                type="number"
+                type="text"
+                inputMode="numeric"
                 maxLength={1}
                 value={value}
                 onChange={(e) => {
