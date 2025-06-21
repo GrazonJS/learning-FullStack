@@ -1,1 +1,3 @@
-export const JWT_PASSWORD = "not so easy bro";
+const JWT_PASSWORD = "somethinghere";
+
+module.exports = JWT_PASSWORD;
