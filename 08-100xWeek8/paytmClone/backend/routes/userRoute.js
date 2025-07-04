@@ -27,7 +27,8 @@ router.post("/signup", signupMiddleware, async (req, res) => {
 
   const token = jwt.sign({ userId: newUser._id }, JWT_PASSWORD);
 
-  const balance = Math.random() * 10000;
+  const random = Math.random() * 10000;
+  const balance = random.toFixed(2);
 
   const newAccount = await Account.create({
     userId: newUser._id,
@@ -118,7 +119,6 @@ router.get("/bulk", authMiddleware, async (req, res) => {
       },
     ],
   });
-  console.log(users);
 
   return res.json({
     users: users.map((user) => ({
