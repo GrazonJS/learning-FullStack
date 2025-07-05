@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "./Button";
-import axios from "axios";
+import axios, { all } from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Users = () => {
@@ -8,17 +8,20 @@ const Users = () => {
   const [filter, setFilter] = useState("");
   const [users, setUsers] = useState([]);
 
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
     const fetchResult = async () => {
       const response = await axios.get(
         `http://localhost:3000/api/v1/user/bulk?filter=${filter}`,
         {
           headers: {
-            authorization: `Bearer ${localStorage.getItem("token")}`,
+            authorization: `Bearer ${token}`,
           },
         }
       );
-      setUsers(response.data.users);
+
+      // setUsers(response.data.users);
     };
     fetchResult();
   }, [filter]);

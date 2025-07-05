@@ -43,7 +43,7 @@ const Signin = () => {
                   localStorage.setItem("token", response.data.token);
                   navigate("/dashboard");
                 } catch (e) {
-                  console.error(e);
+                  console.error("the catch error");
                 }
               }}
             />
