@@ -1,9 +1,7 @@
 const mongoose = require("mongoose");
 
 mongoose
-  .connect(
-    "mongodb+srv://Graceshon:I9Mv6Pga9604lHaE@cluster0.sxag7i8.mongodb.net/Paytm-database"
-  )
+  .connect("")
   .then(() => console.log("database connected sucessfully"))
   .catch((e) => {
     console.log("error in connecting the database");
