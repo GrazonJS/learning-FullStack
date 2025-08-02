@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const pg_1 = require("pg");
 const client = new pg_1.Client({
-    connectionString: "postgresql://neondb_owner:npg_OQyo0MV2IfYv@ep-sparkling-pond-a1l295zw-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+    connectionString: ""
 });
 // const createUsersTable = async()=> {
 //     await client.connect()
